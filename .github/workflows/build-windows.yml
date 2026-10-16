@@ -1,12 +1,27 @@
 name: Build Windows Installer
 
 # Manual helper: builds an unsigned Windows NSIS installer without any
-# repository secrets and uploads it as a workflow artifact.
+# repository secrets. The installer is always uploaded as a workflow
+# artifact and can additionally be published as a GitHub release.
 on:
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: 'Publish a GitHub release with this tag (empty = artifact only)'
+        required: false
+        type: string
+      release_name:
+        description: 'Release title (defaults to the tag)'
+        required: false
+        type: string
+      prerelease:
+        description: 'Mark the release as a pre-release'
+        required: false
+        type: boolean
+        default: true
 
 permissions:
-  contents: read
+  contents: write
 
 env:
   CARGO_INCREMENTAL: 0
@@ -69,3 +84,14 @@ jobs:
           name: clash-verge-windows-x64-nsis
           path: target/x86_64-pc-windows-msvc/release/bundle/nsis/*-setup.exe
           if-no-files-found: error
+
+      - name: Publish release
+        if: inputs.release_tag != ''
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ inputs.release_tag }}
+          name: ${{ inputs.release_name || inputs.release_tag }}
+          prerelease: ${{ inputs.prerelease }}
+          files: target/x86_64-pc-windows-msvc/release/bundle/nsis/*-setup.exe
+          generate_release_notes: true
+          fail_on_unmatched_files: true

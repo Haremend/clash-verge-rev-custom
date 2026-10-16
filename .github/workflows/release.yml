@@ -1,10 +1,10 @@
 name: Release Build
 
+# Custom repo: this upstream pipeline needs upstream signing secrets, so it
+# stays manual-only. Use the "Build Windows Installer" workflow to build and
+# publish custom installers.
 on:
-  push:
-    # -rc tag 时预览发布, 跳过 telegram 通知、跳过 winget 提交、跳过 latest.json 文件更新
-    tags:
-      - 'v*.*.*'
+  workflow_dispatch:
 permissions: write-all
 env:
   CARGO_INCREMENTAL: 0
