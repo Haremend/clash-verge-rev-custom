@@ -1,0 +1,71 @@
+name: Build Windows Installer
+
+# Manual helper: builds an unsigned Windows NSIS installer without any
+# repository secrets and uploads it as a workflow artifact.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_INCREMENTAL: 0
+  HUSKY: 0
+
+jobs:
+  build-windows:
+    name: build-windows-x64
+    runs-on: windows-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: '1.99.0'
+          targets: x86_64-pc-windows-msvc
+
+      - name: Rust cache
+        uses: Swatinem/rust-cache@v2
+        with:
+          prefix-key: 'v1-rust'
+          key: 'rust-shared-stable-windows-x86_64-pc-windows-msvc'
+          workspaces: |
+            . -> target
+          cache-all-crates: true
+          cache-workspace-crates: true
+
+      - name: Install Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24.22.0'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Prepare build resources
+        run: pnpm run prebuild x86_64-pc-windows-msvc
+
+      - name: Build installer
+        shell: pwsh
+        env:
+          NODE_OPTIONS: '--max-old-space-size=4096'
+        run: |
+          $configPath = Join-Path $env:RUNNER_TEMP 'custom-build.json'
+          '{"bundle":{"createUpdaterArtifacts":false}}' |
+            Set-Content -LiteralPath $configPath -Encoding utf8
+          pnpm exec tauri build --target x86_64-pc-windows-msvc --bundles nsis --config $configPath
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v7
+        with:
+          name: clash-verge-windows-x64-nsis
+          path: target/x86_64-pc-windows-msvc/release/bundle/nsis/*-setup.exe
+          if-no-files-found: error
