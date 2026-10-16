@@ -37,7 +37,8 @@
       "delayCheckUrl": "Gecikme kontrol URL'si",
       "showBasic": "Temel Vekil",
       "showDetail": "Vekil detayı",
-      "filter": "Filtre"
+      "filter": "Filtre",
+      "removeNode": "Düğümü sil"
     },
     "placeholders": {
       "delayCheckUrl": "Gecikme kontrol URL'si"
@@ -65,6 +66,15 @@
         "openProfiles": "Profillere Git",
         "restartCore": "Çekirdeği Yeniden Başlat",
         "openLogs": "Günlükler Klasörünü Aç"
+      }
+    },
+    "feedback": {
+      "notifications": {
+        "nodeRemoved": "{{name}} düğümü silindi"
+      },
+      "errors": {
+        "proxyListUnavailable": "Etkin profilde düzenlenebilir düğüm listesi yok",
+        "proxyListReadFailed": "Profil düğüm listesi okunamadı"
       }
     },
     "chain": {

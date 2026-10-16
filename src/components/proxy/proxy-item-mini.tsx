@@ -1,5 +1,12 @@
-import { CheckCircleOutlineRounded } from '@mui/icons-material'
-import { alpha, Box, ListItemButton, styled, Typography } from '@mui/material'
+import { CheckCircleOutlineRounded, CloseRounded } from '@mui/icons-material'
+import {
+  alpha,
+  Box,
+  ListItemButton,
+  styled,
+  Tooltip,
+  Typography,
+} from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
 import { BaseLoading } from '@/components/base'
@@ -11,22 +18,26 @@ import {
   type ResolvedProxyMember,
 } from '@/types/proxy-view'
 
+import { isRemovableProxyNode } from './proxy-node-removal'
+
 interface Props {
   group: ProxyGroupView
   member: ResolvedProxyMember
   selected: boolean
   showType?: boolean
   onClick?: (member: ResolvedProxyMember) => void
+  onRemove?: (member: ResolvedProxyMember) => void
 }
 
 // 多列布局
 export const ProxyItemMini = (props: Props) => {
-  const { group, member, selected, showType = true, onClick } = props
+  const { group, member, selected, showType = true, onClick, onRemove } = props
   const details = memberDetails(member)
   const unresolved = member.kind === 'unresolved'
   const name = member.ref.name
   const type = unresolved ? member.ref.reason : (details?.type ?? '')
   const now = member.kind === 'group' ? member.group.now : undefined
+  const removable = !!onRemove && isRemovableProxyNode(member)
 
   const { t } = useTranslation()
 
@@ -60,6 +71,7 @@ export const ProxyItemMini = (props: Props) => {
             '&:hover .the-check': { display: !showDelay ? 'block' : 'none' },
             '&:hover .the-delay': { display: showDelay ? 'block' : 'none' },
             '&:hover .the-icon': { display: 'none' },
+            '&:hover .the-remove': { display: removable ? 'flex' : 'none' },
             '& .the-pin, & .the-unpin': {
               position: 'absolute',
               fontSize: '12px',
@@ -208,6 +220,33 @@ export const ProxyItemMini = (props: Props) => {
             />
           )}
       </Box>
+      {removable && (
+        <Tooltip title={t('proxies.page.tooltips.removeNode')} arrow>
+          <Box
+            className="the-remove"
+            onClick={(event) => {
+              event.preventDefault()
+              event.stopPropagation()
+              onRemove?.(member)
+            }}
+            sx={({ palette }) => ({
+              alignItems: 'center',
+              borderRadius: '4px',
+              color: palette.text.secondary,
+              cursor: 'pointer',
+              display: 'none',
+              justifyContent: 'center',
+              padding: '3px 4px',
+              ':hover': {
+                bgcolor: alpha(palette.error.main, 0.15),
+                color: palette.error.main,
+              },
+            })}
+          >
+            <CloseRounded sx={{ fontSize: 16 }} />
+          </Box>
+        </Tooltip>
+      )}
       {!unresolved && group.fixed && group.fixed === name && (
         // 展示 fixed 状态
         <span

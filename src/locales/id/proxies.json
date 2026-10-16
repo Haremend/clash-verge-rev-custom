@@ -37,7 +37,8 @@
       "delayCheckUrl": "URL Periksa Keterlambatan",
       "showBasic": "Dasar Proksi",
       "showDetail": "Detail Proksi",
-      "filter": "Filter"
+      "filter": "Filter",
+      "removeNode": "Hapus node"
     },
     "placeholders": {
       "delayCheckUrl": "URL Periksa Keterlambatan"
@@ -65,6 +66,15 @@
         "openProfiles": "Buka Profil",
         "restartCore": "Mulai Ulang Inti",
         "openLogs": "Buka Folder Log"
+      }
+    },
+    "feedback": {
+      "notifications": {
+        "nodeRemoved": "Node {{name}} dihapus"
+      },
+      "errors": {
+        "proxyListUnavailable": "Profil aktif tidak memiliki daftar node yang dapat diedit",
+        "proxyListReadFailed": "Gagal membaca daftar node profil"
       }
     },
     "chain": {

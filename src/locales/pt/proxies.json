@@ -37,7 +37,8 @@
       "delayCheckUrl": "URL do teste de latência",
       "showBasic": "Proxy básico",
       "showDetail": "Proxy detalhado",
-      "filter": "Filtro"
+      "filter": "Filtro",
+      "removeNode": "Excluir nó"
     },
     "placeholders": {
       "delayCheckUrl": "URL do teste de latência"
@@ -65,6 +66,15 @@
         "openProfiles": "Ir para Perfis",
         "restartCore": "Reiniciar núcleo",
         "openLogs": "Abrir pasta de logs"
+      }
+    },
+    "feedback": {
+      "notifications": {
+        "nodeRemoved": "Nó {{name}} excluído"
+      },
+      "errors": {
+        "proxyListUnavailable": "O perfil ativo não tem uma lista de nós editável",
+        "proxyListReadFailed": "Falha ao ler a lista de nós do perfil"
       }
     },
     "chain": {

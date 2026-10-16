@@ -1,4 +1,4 @@
-import { CheckCircleOutlineRounded } from '@mui/icons-material'
+import { CheckCircleOutlineRounded, CloseRounded } from '@mui/icons-material'
 import {
   alpha,
   Box,
@@ -7,6 +7,7 @@ import {
   ListItemIcon,
   ListItemText,
   styled,
+  Tooltip,
   type SxProps,
   type Theme,
 } from '@mui/material'
@@ -21,6 +22,8 @@ import {
   type ResolvedProxyMember,
 } from '@/types/proxy-view'
 
+import { isRemovableProxyNode } from './proxy-node-removal'
+
 interface Props {
   group: ProxyGroupView
   member: ResolvedProxyMember
@@ -28,6 +31,7 @@ interface Props {
   showType?: boolean
   sx?: SxProps<Theme>
   onClick?: (member: ResolvedProxyMember) => void
+  onRemove?: (member: ResolvedProxyMember) => void
 }
 
 const Widget = styled(Box)(() => ({
@@ -50,12 +54,21 @@ const TypeBox = styled('span')(({ theme }) => ({
 
 export const ProxyItem = (props: Props) => {
   const { t } = useTranslation()
-  const { group, member, selected, showType = true, sx, onClick } = props
+  const {
+    group,
+    member,
+    selected,
+    showType = true,
+    sx,
+    onClick,
+    onRemove,
+  } = props
   const details = memberDetails(member)
   const unresolved = member.kind === 'unresolved'
   const name = member.ref.name
   const type = unresolved ? member.ref.reason : (details?.type ?? '')
   const now = member.kind === 'group' ? member.group.now : undefined
+  const removable = !!onRemove && isRemovableProxyNode(member)
 
   // -1/<=0 为不显示，-2 为 loading
   const { delayValue, isPreset, timeout, onDelay } = useProxyDelayState(
@@ -81,6 +94,7 @@ export const ProxyItem = (props: Props) => {
               '&:hover .the-check': { display: !showDelay ? 'block' : 'none' },
               '&:hover .the-delay': { display: showDelay ? 'block' : 'none' },
               '&:hover .the-icon': { display: 'none' },
+              '&:hover .the-remove': { display: removable ? 'flex' : 'none' },
               '&.Mui-selected': {
                 width: `calc(100% + 3px)`,
                 marginLeft: `-3px`,
@@ -188,6 +202,33 @@ export const ProxyItem = (props: Props) => {
             />
           )}
         </ListItemIcon>
+        {removable && (
+          <Tooltip title={t('proxies.page.tooltips.removeNode')} arrow>
+            <Box
+              className="the-remove"
+              onClick={(event) => {
+                event.preventDefault()
+                event.stopPropagation()
+                onRemove?.(member)
+              }}
+              sx={({ palette }) => ({
+                alignItems: 'center',
+                borderRadius: '4px',
+                color: palette.text.secondary,
+                cursor: 'pointer',
+                display: 'none',
+                justifyContent: 'center',
+                padding: '3px 4px',
+                ':hover': {
+                  bgcolor: alpha(palette.error.main, 0.15),
+                  color: palette.error.main,
+                },
+              })}
+            >
+              <CloseRounded sx={{ fontSize: 16 }} />
+            </Box>
+          </Tooltip>
+        )}
       </ListItemButton>
     </ListItem>
   )

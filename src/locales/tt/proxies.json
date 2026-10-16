@@ -37,7 +37,8 @@
       "delayCheckUrl": "Задержканы тикшерү URL-ы",
       "showBasic": "Прокси турында кыскача мәгълүмат",
       "showDetail": "Прокси турында тулы мәгълүмат",
-      "filter": "Фильтр"
+      "filter": "Фильтр",
+      "removeNode": "Төенне бетерү"
     },
     "placeholders": {
       "delayCheckUrl": "Задержканы тикшерү URL-ы"
@@ -65,6 +66,15 @@
         "openProfiles": "Профильләргә күчү",
         "restartCore": "Ядроны яңадан эшләтү",
         "openLogs": "Журналлар папкасын ачу"
+      }
+    },
+    "feedback": {
+      "notifications": {
+        "nodeRemoved": "{{name}} төене бетерелде"
+      },
+      "errors": {
+        "proxyListUnavailable": "Актив профильдә үзгәртеп була торган төеннәр исемлеге юк",
+        "proxyListReadFailed": "Профиль төеннәре исемлеген уку уңышсыз булды"
       }
     },
     "chain": {

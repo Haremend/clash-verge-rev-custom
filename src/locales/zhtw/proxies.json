@@ -37,7 +37,8 @@
       "delayCheckUrl": "延遲測試網址",
       "showBasic": "隱藏節點細節",
       "showDetail": "展示節點細節",
-      "filter": "篩選節點"
+      "filter": "篩選節點",
+      "removeNode": "刪除節點"
     },
     "placeholders": {
       "delayCheckUrl": "延遲測試網址"
@@ -65,6 +66,15 @@
         "openProfiles": "前往訂閱",
         "restartCore": "重新啟動核心",
         "openLogs": "開啟日誌目錄"
+      }
+    },
+    "feedback": {
+      "notifications": {
+        "nodeRemoved": "已刪除節點 {{name}}"
+      },
+      "errors": {
+        "proxyListUnavailable": "目前訂閱沒有可編輯的節點列表",
+        "proxyListReadFailed": "讀取訂閱節點列表失敗"
       }
     },
     "chain": {

@@ -40,6 +40,7 @@ interface RenderProps {
     group: IRenderItem['group'],
     member: ResolvedProxyMember,
   ) => void
+  onRemove?: (member: ResolvedProxyMember) => void
   onGroupToggle?: (group: IRenderItem['group']) => void
 }
 
@@ -52,6 +53,7 @@ export const ProxyRender = memo(function ProxyRender(props: RenderProps) {
     onCheckAll,
     onHeadState,
     onChangeProxy,
+    onRemove,
     onGroupToggle,
     isChainMode: _ = false,
   } = props
@@ -83,9 +85,10 @@ export const ProxyRender = memo(function ProxyRender(props: RenderProps) {
         selected={group.now === occurrence.member.ref.name}
         showType={showType}
         onClick={(nextMember) => onChangeProxy(group, nextMember)}
+        onRemove={onRemove}
       />
     ))
-  }, [type, memberCol, item.key, group, showType, onChangeProxy])
+  }, [type, memberCol, item.key, group, showType, onChangeProxy, onRemove])
 
   if (type === 0) {
     const nameBlock = (
@@ -266,6 +269,7 @@ export const ProxyRender = memo(function ProxyRender(props: RenderProps) {
         showType={headState?.showType}
         sx={{ py: 0, pl: 2 }}
         onClick={(nextMember) => onChangeProxy(group, nextMember)}
+        onRemove={onRemove}
       />
     )
   }

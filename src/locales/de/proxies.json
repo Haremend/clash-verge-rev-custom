@@ -37,7 +37,8 @@
       "delayCheckUrl": "Latenztest-URL",
       "showBasic": "Knotendetails ausblenden",
       "showDetail": "Knotendetails anzeigen",
-      "filter": "Knoten filtern"
+      "filter": "Knoten filtern",
+      "removeNode": "Knoten löschen"
     },
     "placeholders": {
       "delayCheckUrl": "Latenztest-URL"
@@ -65,6 +66,15 @@
         "openProfiles": "Zum Abonnement",
         "restartCore": "Kern neu starten",
         "openLogs": "Protokollordner öffnen"
+      }
+    },
+    "feedback": {
+      "notifications": {
+        "nodeRemoved": "Knoten {{name}} entfernt"
+      },
+      "errors": {
+        "proxyListUnavailable": "Das aktive Profil enthält keine bearbeitbare Knotenliste",
+        "proxyListReadFailed": "Die Knotenliste des Profils konnte nicht gelesen werden"
       }
     },
     "chain": {

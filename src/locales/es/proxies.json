@@ -37,7 +37,8 @@
       "delayCheckUrl": "URL de prueba de latencia",
       "showBasic": "Ocultar detalles del nodo",
       "showDetail": "Mostrar detalles del nodo",
-      "filter": "Filtrar nodos"
+      "filter": "Filtrar nodos",
+      "removeNode": "Eliminar nodo"
     },
     "placeholders": {
       "delayCheckUrl": "URL de prueba de latencia"
@@ -65,6 +66,15 @@
         "openProfiles": "Ir a Perfiles",
         "restartCore": "Reiniciar núcleo",
         "openLogs": "Abrir carpeta de registros"
+      }
+    },
+    "feedback": {
+      "notifications": {
+        "nodeRemoved": "Nodo {{name}} eliminado"
+      },
+      "errors": {
+        "proxyListUnavailable": "El perfil activo no tiene una lista de nodos editable",
+        "proxyListReadFailed": "No se pudo leer la lista de nodos del perfil"
       }
     },
     "chain": {

@@ -37,7 +37,8 @@
       "delayCheckUrl": "遅延テストURL",
       "showBasic": "ノードの詳細を隠す",
       "showDetail": "ノードの詳細を表示する",
-      "filter": "ノードをフィルタリング"
+      "filter": "ノードをフィルタリング",
+      "removeNode": "ノードを削除"
     },
     "placeholders": {
       "delayCheckUrl": "遅延テストURL"
@@ -65,6 +66,15 @@
         "openProfiles": "プロファイルへ移動",
         "restartCore": "コアを再起動",
         "openLogs": "ログフォルダーを開く"
+      }
+    },
+    "feedback": {
+      "notifications": {
+        "nodeRemoved": "ノード {{name}} を削除しました"
+      },
+      "errors": {
+        "proxyListUnavailable": "現在のプロファイルに編集可能なノード一覧がありません",
+        "proxyListReadFailed": "プロファイルのノード一覧を読み込めませんでした"
       }
     },
     "chain": {

@@ -562,6 +562,15 @@ export interface TranslationResources {
             title: string
           }
         }
+        feedback: {
+          errors: {
+            proxyListReadFailed: string
+            proxyListUnavailable: string
+          }
+          notifications: {
+            nodeRemoved: string
+          }
+        }
         labels: {
           delayCheckReset: string
           nodeCount: string
@@ -598,6 +607,7 @@ export interface TranslationResources {
           delayCheckUrl: string
           filter: string
           locate: string
+          removeNode: string
           showBasic: string
           showDetail: string
           sortDefault: string

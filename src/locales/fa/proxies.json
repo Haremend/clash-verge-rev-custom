@@ -37,7 +37,8 @@
       "delayCheckUrl": "آدرس بررسی تأخیر",
       "showBasic": "پراکسی پایه",
       "showDetail": "جزئیات پراکسی",
-      "filter": "فیلتر"
+      "filter": "فیلتر",
+      "removeNode": "حذف گره"
     },
     "placeholders": {
       "delayCheckUrl": "آدرس بررسی تأخیر"
@@ -65,6 +66,15 @@
         "openProfiles": "رفتن به پروفایل‌ها",
         "restartCore": "راه‌اندازی مجدد هسته",
         "openLogs": "باز کردن پوشه گزارش‌ها"
+      }
+    },
+    "feedback": {
+      "notifications": {
+        "nodeRemoved": "گره {{name}} حذف شد"
+      },
+      "errors": {
+        "proxyListUnavailable": "پروفایل فعال فهرست گره قابل ویرایش ندارد",
+        "proxyListReadFailed": "خواندن فهرست گره‌های پروفایل ناموفق بود"
       }
     },
     "chain": {

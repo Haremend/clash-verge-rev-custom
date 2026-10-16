@@ -37,7 +37,8 @@
       "delayCheckUrl": "Delay check URL",
       "showBasic": "Proxy basic",
       "showDetail": "Proxy detail",
-      "filter": "Filter"
+      "filter": "Filter",
+      "removeNode": "Delete node"
     },
     "placeholders": {
       "delayCheckUrl": "Delay check URL"
@@ -65,6 +66,15 @@
         "openProfiles": "Go to Profiles",
         "restartCore": "Restart Core",
         "openLogs": "Open Logs Folder"
+      }
+    },
+    "feedback": {
+      "notifications": {
+        "nodeRemoved": "Removed node {{name}}"
+      },
+      "errors": {
+        "proxyListUnavailable": "The active profile has no editable node list",
+        "proxyListReadFailed": "Failed to read the profile node list"
       }
     },
     "chain": {

@@ -37,7 +37,8 @@
       "delayCheckUrl": "지연 확인 URL",
       "showBasic": "프록시 기본",
       "showDetail": "프록시 상세",
-      "filter": "필터"
+      "filter": "필터",
+      "removeNode": "노드 삭제"
     },
     "placeholders": {
       "delayCheckUrl": "지연 확인 URL"
@@ -65,6 +66,15 @@
         "openProfiles": "프로필로 이동",
         "restartCore": "코어 재시작",
         "openLogs": "로그 폴더 열기"
+      }
+    },
+    "feedback": {
+      "notifications": {
+        "nodeRemoved": "{{name}} 노드를 삭제했습니다"
+      },
+      "errors": {
+        "proxyListUnavailable": "현재 프로필에 편집 가능한 노드 목록이 없습니다",
+        "proxyListReadFailed": "프로필 노드 목록을 읽지 못했습니다"
       }
     },
     "chain": {

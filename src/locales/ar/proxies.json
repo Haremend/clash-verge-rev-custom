@@ -37,7 +37,8 @@
       "delayCheckUrl": "رابط فحص التأخير",
       "showBasic": "إعدادات الوكيل الأساسية",
       "showDetail": "تفاصيل الوكيل",
-      "filter": "تصفية"
+      "filter": "تصفية",
+      "removeNode": "حذف العقدة"
     },
     "placeholders": {
       "delayCheckUrl": "رابط فحص التأخير"
@@ -65,6 +66,15 @@
         "openProfiles": "الانتقال إلى الملفات الشخصية",
         "restartCore": "إعادة تشغيل النواة",
         "openLogs": "فتح مجلد السجلات"
+      }
+    },
+    "feedback": {
+      "notifications": {
+        "nodeRemoved": "تم حذف العقدة {{name}}"
+      },
+      "errors": {
+        "proxyListUnavailable": "لا يحتوي الملف النشط على قائمة عقد قابلة للتحرير",
+        "proxyListReadFailed": "تعذر قراءة قائمة عقد الملف الشخصي"
       }
     },
     "chain": {

@@ -37,7 +37,8 @@
       "delayCheckUrl": "URL для проверки задержки",
       "showBasic": "Показывать меньше информации о прокси",
       "showDetail": "Показывать больше информации о прокси",
-      "filter": "Фильтр"
+      "filter": "Фильтр",
+      "removeNode": "Удалить узел"
     },
     "placeholders": {
       "delayCheckUrl": "URL для проверки задержки"
@@ -65,6 +66,15 @@
         "openProfiles": "Перейти к профилям",
         "restartCore": "Перезапустить ядро",
         "openLogs": "Открыть папку журналов"
+      }
+    },
+    "feedback": {
+      "notifications": {
+        "nodeRemoved": "Узел {{name}} удалён"
+      },
+      "errors": {
+        "proxyListUnavailable": "В активном профиле нет редактируемого списка узлов",
+        "proxyListReadFailed": "Не удалось прочитать список узлов профиля"
       }
     },
     "chain": {

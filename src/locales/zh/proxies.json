@@ -37,7 +37,8 @@
       "delayCheckUrl": "延迟测试链接",
       "showBasic": "隐藏节点细节",
       "showDetail": "展示节点细节",
-      "filter": "过滤节点"
+      "filter": "过滤节点",
+      "removeNode": "删除节点"
     },
     "placeholders": {
       "delayCheckUrl": "延迟测试链接"
@@ -65,6 +66,15 @@
         "openProfiles": "前往订阅",
         "restartCore": "重启内核",
         "openLogs": "打开日志目录"
+      }
+    },
+    "feedback": {
+      "notifications": {
+        "nodeRemoved": "已删除节点 {{name}}"
+      },
+      "errors": {
+        "proxyListUnavailable": "当前订阅没有可编辑的节点列表",
+        "proxyListReadFailed": "读取订阅节点列表失败"
       }
     },
     "chain": {

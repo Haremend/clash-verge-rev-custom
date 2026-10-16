@@ -21,6 +21,7 @@ import {
 } from '@/components/base'
 import { useProfiles } from '@/hooks/use-profiles'
 import { useProxySelection } from '@/hooks/use-proxy-selection'
+import { useRemoveProxyNode } from '@/hooks/use-remove-proxy-node'
 import { useVerge } from '@/hooks/use-verge'
 import { useProxiesData, useSystemData } from '@/providers/app-data-context'
 import { syncTrayProxySelection } from '@/services/cmds'
@@ -387,6 +388,7 @@ function NormalProxyGroups(props: { mode: string }) {
     saveScrollPosition,
   } = useProxyRenderState(mode, false, null)
   const emptyList = useEmptyRenderList()
+  const { removeNode } = useRemoveProxyNode()
   const { onDragEnd: onHeaderDragEnd } = useProxyGroupHeaderLayout()
   const renderFirstRef = useRef(true)
   // Do not persist intermediate positions produced while restoring virtual scroll.
@@ -487,6 +489,10 @@ function NormalProxyGroups(props: { mode: string }) {
     [handleProxyGroupChange],
   )
 
+  const handleRemoveProxy = useStableCallback((member: ResolvedProxyMember) => {
+    void removeNode(member.ref.name)
+  })
+
   const handleLocation = useStableCallback((group: ProxyGroupView) => {
     if (!group) return
     const { name, now } = group
@@ -566,12 +572,14 @@ function NormalProxyGroups(props: { mode: string }) {
           onHeadState(groupName, patch)
         }}
         onChangeProxy={handleChangeProxy}
+        onRemove={handleRemoveProxy}
         onGroupToggle={handleGroupToggle}
       />
     ),
     [
       handleChangeProxy,
       handleCheckAll,
+      handleRemoveProxy,
       onHeadState,
       handleLocation,
       handleGroupToggle,
@@ -588,9 +596,16 @@ function NormalProxyGroups(props: { mode: string }) {
         onCheckAll={handleCheckAll}
         onHeadState={onHeadState}
         onChangeProxy={handleChangeProxy}
+        onRemove={handleRemoveProxy}
       />
     ),
-    [handleChangeProxy, handleCheckAll, onHeadState, handleLocation],
+    [
+      handleChangeProxy,
+      handleCheckAll,
+      handleRemoveProxy,
+      onHeadState,
+      handleLocation,
+    ],
   )
 
   if (!hasRenderableItems(renderList)) return emptyList
